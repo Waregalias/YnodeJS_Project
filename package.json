@@ -1,0 +1,19 @@
+{
+  "name": "YnodeJS_Project",
+  "version": "0.1.0",
+  "description": "Web Application | Gestion de projet",
+  "main": "server.js",
+  "author": {
+    "name": "kobe"
+  },
+  "dependencies": {
+    "animate.css": "^3.5.2",
+    "bootstrap": "^3.3.7",
+    "express": "^4.15.0",
+    "font-awesome": "^4.7.0",
+    "mongojs": "^2.4.0",
+    "nodemon": "^1.11.0",
+    "nprogress": "^0.2.0",
+    "socket.io": "^1.7.3"
+  }
+}
