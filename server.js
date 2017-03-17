@@ -16,7 +16,9 @@ var app = express();
 // all config
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
-app.use(express.static(path.join(__dirname, 'node_modules')));
+app.set('public', __dirname + '/public');
+app.use('/public', express.static(__dirname + '/public'));
+app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
 app.get('/', routes.index);
 
