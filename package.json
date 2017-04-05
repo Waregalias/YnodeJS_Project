@@ -7,11 +7,16 @@
     "name": "kobe"
   },
   "dependencies": {
+    "angular": "^1.6.4",
     "animate.css": "^3.5.2",
+    "body-parser": "^1.16.1",
     "bootstrap": "^3.3.7",
     "express": "^4.15.0",
     "font-awesome": "^4.7.0",
+    "jsonwebtoken": "^7.3.0",
     "mongojs": "^2.4.0",
+    "mongoose": "^4.9.0",
+    "morgan": "^1.8.1",
     "nodemon": "^1.11.0",
     "nprogress": "^0.2.0",
     "socket.io": "^1.7.3"

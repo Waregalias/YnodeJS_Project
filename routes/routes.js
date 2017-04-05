@@ -1,7 +1,7 @@
 "use strict";
-/*
- * GET home page.
- */
+/* jshint node: true */
+/* GET home page. */
+
 var express = require('express');
 var path = require('path');
 var app = express();
