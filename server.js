@@ -7,47 +7,63 @@
 //    Description: Gantt Project Application Server - YnodeJS
 //    version: .alpha 0.1.0
 //*********************************************************//
-
 // app include
-var express = require('express');
-var app = express();
-var http = require('http');
-var path = require('path');
-var routes = require('./routes/routes');
+var express     = require('express');
+var app         = express();
+var http        = require('http');
+var path        = require('path');
+var routes      = require('./routes/routes');
+var auth        = require('./routes/auth');
 // auth include
 var bodyParser  = require('body-parser');
 var morgan      = require('morgan');
 var mongoose    = require('mongoose');
-var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
-var config = require('./config'); // MongoDB config file
-var User   = require('./models/user'); // get our mongoose model
+var jwt         = require('jsonwebtoken');
+var config      = require('./config');
+var User        = require('./models/user');
 
 // =======================
 // ===== Server conf =====
 // =======================
+app.set('port', 3000);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
-app.set('public', __dirname + '/public');
+app.use('/angular', express.static(__dirname + '/angular'));
 app.use('/public', express.static(__dirname + '/public'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
-
+app.set('superSecret', config.secret);
 // =======================
 // ====== Auth conf ======
 // =======================
-mongoose.connect(config.database); // connect to database
-app.set('superSecret', config.secret); // secret variable
-
-// use body parser so we can get info from POST and/or URL parameters
+mongoose.connect(config.database);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-// use morgan to log requests to the console
 app.use(morgan('dev'));
-
+// app.use(function(req, res, next) {
+//   var token = req.body.token || req.query.token || req.headers['x-access-token'];
+//   if (token) {
+//     jwt.verify(token, app.get('superSecret'), function(err, decoded) {
+//       if (err) {
+//         return res.json({ success: false, message: 'Failed to authenticate token.' });
+//       } else {
+//         req.decoded = decoded;
+//         next();
+//       }
+//     });
+//   } else {
+//     return res.status(403).send({
+//         success: false,
+//         message: 'No token provided.'
+//     });
+//   }
+// });
+// =======================
+// ======= Routes ========
+// =======================
 app.get('/', routes.index);
+app.post('/signin', auth.signin);
+app.post('/login', auth.login);
 
-
-app.set('port', 3000);
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Web Application | Server listening on port ' + app.get('port'));
 });
