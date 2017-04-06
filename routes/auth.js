@@ -1,8 +1,12 @@
+"use strict";
+/* jshint node: true */
+/* Auth functions page. */
 // app include
 var express     = require('express');
 var app         = express();
 var http        = require('http');
 var path        = require('path');
+var routes      = require('../routes/routes');
 // auth include
 var bodyParser  = require('body-parser');
 var morgan      = require('morgan');
@@ -13,10 +17,10 @@ var User        = require('../models/user'); // get our mongoose model
 // Variable config
 app.set('superSecret', config.secret);
 
-function signin(req, res) {
+function signup(req, res) {
   var nick = new User({
     username: req.body.username,
-    password: req.body.username,
+    password: req.body.password,
     level: true
   });
   nick.save(function(err) {
@@ -24,7 +28,7 @@ function signin(req, res) {
     console.log('User saved successfully');
     res.json({ success: true });
   });
-} exports.signin = signin;
+} exports.signup = signup;
 
 function login(req, res) {
   User.findOne({
@@ -32,15 +36,15 @@ function login(req, res) {
   }, function(err, user) {
     if (err) throw err;
     if (!user) {
-      res.json({ success: false, message: 'Authentication failed. User not found.' });
+      return res.json({ success: false, message: 'Authentication failed. User not found.' });
     } else if (user) {
       if (user.password != req.body.password) {
-        res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+        return res.json({ success: false, message: 'Authentication failed. Wrong password.' });
       } else {
         var token = jwt.sign(user, app.get('superSecret'), {
           expiresIn: 1440
         });
-        res.json({
+        return res.json({
           success: true,
           message: 'Enjoy your token!',
           token: token

@@ -30,7 +30,7 @@
         <div class="animate form login_form">
           <section class="login_content" ng-controller="LoginController">
             <form ng-submit="login()">
-              <h1>Log in</h1>
+              <h1>Sign up</h1>
               <div>
                 <input type="text" class="form-control" placeholder="Username" ng-model="username" required="" />
               </div>
@@ -38,15 +38,11 @@
                 <input type="password" class="form-control" placeholder="Password" ng-model="password" required="" />
               </div>
               <div>
-                <input class="btn btn-default submit" type="submit" value="log in"></input>
-                <a class="reset_pass" ng-click="forgot()">Lost your password?</a>
+                <a class="btn btn-default submit" href="#">Sign up</a>
               </div>
-              <br/><br/><br/><p class="{{forgotClass}}">{{forgotmsg}}</p>
-              <div class="clearfix"></div>
-
               <div class="separator">
-                <p class="change_link">New to site?
-                  <a href="signup" class="to_register"> Create Account </a>
+                <p class="change_link">Already a member ?
+                  <a href="/" class="to_register"> Log in</a>
                 </p>
 
                 <div class="clearfix"></div>
