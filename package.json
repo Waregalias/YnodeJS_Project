@@ -12,6 +12,7 @@
     "animate.css": "^3.5.2",
     "body-parser": "^1.16.1",
     "bootstrap": "^3.3.7",
+    "cookie-parser": "^1.4.3",
     "express": "^4.15.0",
     "font-awesome": "^4.7.0",
     "jsonwebtoken": "^7.3.0",

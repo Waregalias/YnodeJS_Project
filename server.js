@@ -16,19 +16,19 @@ var routes        = require('./routes/routes');
 var auth          = require('./routes/auth');
 // auth include
 var bodyParser    = require('body-parser');
-var cookieParser  = require('cookie-parser')
+var cookieParser  = require('cookie-parser');
 var morgan        = require('morgan');
 var mongoose      = require('mongoose');
 var jwt           = require('jsonwebtoken');
 var config        = require('./config');
 var User          = require('./models/user');
-
 // =======================
 // ===== Routes conf =====
 // =======================
 app.set('port', 3000);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/app/views');
+// app.use('/app', express.static(__dirname + '/app/'))
 app.use('/controllers', express.static(__dirname + '/app/controllers'));
 app.use('/public', express.static(__dirname + '/app/public'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
