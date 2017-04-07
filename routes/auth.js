@@ -21,7 +21,7 @@ function signup(req, res) {
   var nick = new User({
     username: req.body.username,
     password: req.body.password,
-    level: true
+    token: ''
   });
   nick.save(function(err) {
     if (err) throw err;
