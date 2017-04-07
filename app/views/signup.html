@@ -38,8 +38,11 @@
                 <input type="password" class="form-control" placeholder="Password" ng-model="password" required="" />
               </div>
               <div>
-                <a class="btn btn-default submit" href="#">Sign up</a>
+                <input class="btn btn-default submit pull-right" type="submit" value="Sign up"></input>
               </div>
+              <br/><br/><br/><p class="{{messageClass}}">{{message}}</p>
+              <div class="clearfix"></div>
+
               <div class="separator">
                 <p class="change_link">Already a member ?
                   <a href="/" class="to_register"> Log in</a>

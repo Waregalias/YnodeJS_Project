@@ -32,6 +32,7 @@ app.set('views', __dirname + '/app/views');
 app.use('/controllers', express.static(__dirname + '/app/controllers'));
 app.use('/public', express.static(__dirname + '/app/public'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
+app.use('/vendor', express.static(__dirname + '/vendor'));
 // =======================
 // ====== Auth conf ======
 // =======================
