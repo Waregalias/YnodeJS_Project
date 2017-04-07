@@ -28,7 +28,7 @@ app.controller('LoginController', ['$scope', '$http', '$cookies', function($scop
         } else {
           $scope.token = response.data.token;
           $cookies.put('token', $scope.token);
-          return $scope.token;
+          location.reload();
         }
       });
   };

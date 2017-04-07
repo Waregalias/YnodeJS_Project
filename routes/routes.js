@@ -14,7 +14,8 @@ function control(req, res) {
     if (token) {
       jwt.verify(token, app.get('superSecret'), function(err, decoded) {
         if (err) {
-          return res.json({ success: false, message: 'Failed to authenticate token.' });
+          // return res.json({ success: false, message: 'Failed to authenticate token.' });
+          login(req, res);
         } else {
           console.log("decoded");
           req.decoded = decoded;
@@ -34,5 +35,5 @@ function signup(req, res) {
 } exports.signup = signup;
 
 function board(req, res) {
-    res.sendFile(path.join(__dirname, '../app/views', 'home.html'));
+    res.sendFile(path.join(__dirname, '../app/views', 'board.html'));
 } exports.board = board;
