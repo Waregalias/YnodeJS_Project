@@ -1,7 +1,8 @@
-var app = angular.module('LoginModule', []);
+var app = angular.module('LoginModule', ['ngCookies']);
 
-app.controller('LoginController', function($scope, $http) {
+app.controller('LoginController', ['$scope', '$http', '$cookies', function($scope, $http, $cookies) {
   $scope.master = {};
+  $scope.token = {};
 
   $scope.forgot = function() {
     $scope.forgotClass = 'bg-danger';
@@ -24,7 +25,11 @@ app.controller('LoginController', function($scope, $http) {
         if (!response.data.success) {
           $scope.forgotClass = 'bg-danger';
           $scope.forgotmsg = response.data.message;
+        } else {
+          $scope.token = response.data.token;
+          $cookies.put('token', $scope.token);
+          return $scope.token;
         }
       });
   };
-});
+}]);

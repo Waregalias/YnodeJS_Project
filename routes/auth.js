@@ -11,9 +11,9 @@ var routes      = require('../routes/routes');
 var bodyParser  = require('body-parser');
 var morgan      = require('morgan');
 var mongoose    = require('mongoose');
-var jwt         = require('jsonwebtoken'); // used to create, sign, and verify tokens
-var config      = require('../config'); // MongoDB config file
-var User        = require('../models/user'); // get our mongoose model
+var jwt         = require('jsonwebtoken');
+var config      = require('../config');
+var User        = require('../models/user');
 // Variable config
 app.set('superSecret', config.secret);
 

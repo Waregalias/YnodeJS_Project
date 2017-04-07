@@ -19,17 +19,17 @@
     <!-- Angular Library -->
     <script src="/node_modules/angular/angular.min.js"></script>
     <!-- Application Angular Module-->
-    <script src="/angular/LoginController.js"></script>
+    <script src="/controllers/SignupController.js"></script>
   </head>
-  <body class="login" ng-app="LoginModule">
+  <body class="login" ng-app="SingupModule">
     <div>
       <a class="hiddenanchor" id="signup"></a>
       <a class="hiddenanchor" id="signin"></a>
 
       <div class="login_wrapper">
         <div class="animate form login_form">
-          <section class="login_content" ng-controller="LoginController">
-            <form ng-submit="login()">
+          <section class="login_content" ng-controller="SignupController">
+            <form ng-submit="signup()">
               <h1>Sign up</h1>
               <div>
                 <input type="text" class="form-control" placeholder="Username" ng-model="username" required="" />
