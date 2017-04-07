@@ -16,17 +16,57 @@ var routes        = require('./routes/routes');
 var auth          = require('./routes/auth');
 // auth include
 var bodyParser    = require('body-parser');
-var cookieParser  = require('cookie-parser')
+var cookieParser  = require('cookie-parser');
 var morgan        = require('morgan');
 var mongoose      = require('mongoose');
 var jwt           = require('jsonwebtoken');
 var config        = require('./config');
+var Message          = require('./models/chat');
 var User          = require('./models/user');
+
+var socketio        = require('socket.io')(http);
+
+
+//CHAT
+socketio.on('connection', function (client)
+{
+  console.log("NewClient");
+  socketio.emit('message', {user : 'Server' ,msg : 'New user connected'});
+  
+  Message.find({}).sort({date: 'descending'}).limit(15).exec(function(err, msgs)
+  { 
+    for(var i = msgs.length -1 ; i >= 0  ; i--)
+    {
+      client.emit('message', {user : msgs[i].name ,msg : msgs[i].text , color :msgs[i].color , date : msgs[i].date});
+    }
+  });
+  
+  client.on('disconnect', function()
+  {
+    console.log('user disconnected');
+  });
+  
+  client.on('newmessage', function(data)
+  {
+    console.log('New Message');
+    
+    var tmpNewMessage = new Message({ name : data['user'] , text : data['msg'], date : Date.now() , color : data['color']});
+    
+    socketio.emit('message', {user : data['user'] ,msg : data['msg'], color : data['color'] , date : tmpNewMessage.date});
+    
+    tmpNewMessage.save(function (err, tmpNewMessage) {
+      if (err) return console.error(err);
+    });
+  });
+  
+  
+});
+
 
 // =======================
 // ===== Routes conf =====
 // =======================
-app.set('port', 3000);
+app.set('port', process.env.PORT);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/app/views');
 app.use('/controllers', express.static(__dirname + '/app/controllers'));
@@ -51,6 +91,7 @@ app.post('/login', auth.login);
 app.get('/signup', routes.signup);
 app.post('/signup', auth.signup);
 app.get("/board", routes.board);
+
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Web Application | Server listening on port ' + app.get('port'));
