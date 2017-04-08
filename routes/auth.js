@@ -18,16 +18,25 @@ var User        = require('../models/user');
 app.set('superSecret', config.secret);
 
 function signup(req, res) {
-  var nick = new User({
-    username: req.body.username,
-    password: req.body.password,
-    token: ''
-  });
-  nick.save(function(err) {
+  User.findOne({
+    username: req.body.username
+  }, function(err, user) {
     if (err) throw err;
-    res.json({ success: true });
-    routes.board(req, res);
-  });
+    if (user) {
+      return res.json({ success: false, message: 'This username is already taken !' });
+    } else {
+        var nick = new User({
+          username: req.body.username,
+          password: req.body.password,
+          token: ''
+        });
+        nick.save(function(err) {
+          if (err) throw err;
+          res.json({ success: true , message: 'The user was successfully created.'});
+          routes.board(req, res);
+        });
+      }
+    });
 } exports.signup = signup;
 
 function login(req, res) {
