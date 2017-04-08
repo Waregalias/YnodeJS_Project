@@ -16,6 +16,7 @@
     "express": "^4.15.0",
     "font-awesome": "^4.7.0",
     "jsonwebtoken": "^7.3.0",
+    "method-override": "^2.3.8",
     "mongojs": "^2.4.0",
     "mongoose": "^4.9.0",
     "morgan": "^1.8.1",

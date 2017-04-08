@@ -37,3 +37,7 @@ function signup(req, res) {
 function board(req, res) {
     res.sendFile(path.join(__dirname, '../app/views', 'board.html'));
 } exports.board = board;
+
+function gantt(req, res) {
+    res.sendFile(path.join(__dirname, '../app/views', 'gantt.html'));
+} exports.gantt = gantt;

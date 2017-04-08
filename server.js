@@ -12,8 +12,9 @@ var express       = require('express');
 var app           = express();
 var http          = require('http');
 var path          = require('path');
-var routes        = require('./routes/routes');
 var auth          = require('./routes/auth');
+var gantt          = require('./routes/gantt');
+var routes        = require('./routes/routes');
 // auth include
 var bodyParser    = require('body-parser');
 var cookieParser  = require('cookie-parser');
@@ -30,6 +31,7 @@ app.set('view engine', 'html');
 app.set('views', __dirname + '/app/views');
 // app.use('/app', express.static(__dirname + '/app/'))
 app.use('/controllers', express.static(__dirname + '/app/controllers'));
+app.use('/models', express.static(__dirname + '/app/models'));
 app.use('/public', express.static(__dirname + '/app/public'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 app.use('/vendor', express.static(__dirname + '/vendor'));
@@ -47,10 +49,12 @@ app.use(morgan('dev'));
 // =======================
 app.get('/', routes.control);
 app.get('/login', routes.login);
-app.post('/login', auth.login);
 app.get('/signup', routes.signup);
-app.post('/signup', auth.signup);
 app.get("/board", routes.board);
+app.get("/gantt", routes.gantt);
+app.post('/login', auth.login);
+app.post('/signup', auth.signup);
+app.post("/gantt", gantt.save);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Web Application | Server listening on port ' + app.get('port'));
