@@ -10,7 +10,7 @@
 // app include
 var express       = require('express');
 var app           = express();
-var http          = require('http');
+var http          = require('http').Server(app);
 var path          = require('path');
 var routes        = require('./routes/routes');
 var auth          = require('./routes/auth');
@@ -27,6 +27,7 @@ var User          = require('./models/user');
 var socketio        = require('socket.io')(http);
 
 
+let port = process.env.PORT || 3000;
 //CHAT
 socketio.on('connection', function (client)
 {
@@ -62,13 +63,13 @@ socketio.on('connection', function (client)
   
 });
 
-
 // =======================
 // ===== Routes conf =====
 // =======================
 app.set('port', process.env.PORT);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/app/views');
+// app.use('/app', express.static(__dirname + '/app/'))
 app.use('/controllers', express.static(__dirname + '/app/controllers'));
 app.use('/public', express.static(__dirname + '/app/public'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
@@ -93,6 +94,8 @@ app.post('/signup', auth.signup);
 app.get("/board", routes.board);
 
 
-http.createServer(app).listen(app.get('port'), function () {
+/*http.createServer(app).listen(app.get('port'), function () {
     console.log('Web Application | Server listening on port ' + app.get('port'));
-});
+});*/
+
+http.listen(port, () => {console.log('\nPort:', port);});

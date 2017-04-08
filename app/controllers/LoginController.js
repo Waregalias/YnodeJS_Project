@@ -6,7 +6,7 @@ app.controller('LoginController', ['$scope', '$http', '$cookies', function($scop
 
   $scope.forgot = function() {
     $scope.forgotClass = 'bg-danger';
-    $scope.forgotmsg = "Pleases contact your administrator.";
+    $scope.forgotmsg = 'Pleases contact your administrator.';
   };
 
   $scope.login = function(params) {

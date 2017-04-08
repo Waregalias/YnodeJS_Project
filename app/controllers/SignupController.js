@@ -3,10 +3,9 @@ var app = angular.module('SingupModule', []);
 app.controller('SignupController', ['$scope', '$http', function($scope, $http) {
   $scope.master = {};
 
-  $scope.message = function() {
-    $scope.messageClass = 'bg-danger';
-    $scope.messageError = "Pleases contact your administrator.";
-    $scope.messageSuccess = "User saved successfully !";
+  $scope.resultat = function() {
+    $scope.messageClass = 'bg-success';
+    $scope.message = 'User saved successfully ! Go to log in page !';
   };
 
   $scope.signup = function(params) {
@@ -22,13 +21,11 @@ app.controller('SignupController', ['$scope', '$http', function($scope, $http) {
       },
       data: {username: $scope.username, password: $scope.password}
     }).then(function successCallback(response) {
-          if (!response.data.success) {
-            $scope.forgotClass = 'bg-danger';
-            $scope.forgotmsg = response.data.messageError;
-          } else {
-            $scope.forgotClass = 'bg-success';
-            $scope.forgotmsg = response.data.messageSuccess;
-          }
+        if (!response.data.success) {
+          console.log("error");
+        } else {
+          $scope.resultat();
+        }
       });
   };
 }]);
