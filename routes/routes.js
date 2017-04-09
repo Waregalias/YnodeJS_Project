@@ -41,3 +41,7 @@ function board(req, res) {
 function gantt(req, res) {
     res.sendFile(path.join(__dirname, '../app/views', 'gantt.html'));
 } exports.gantt = gantt;
+
+function chat(req, res) {
+    res.sendFile(path.join(__dirname, '../app/views', 'chat.html'));
+} exports.chat = chat;

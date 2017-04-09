@@ -28,6 +28,9 @@
       <script src="/node_modules/angular-cookies/angular-cookies.min.js"></script>
       <!-- Application Angular Module-->
       <script src="/controllers/HomeController.js"></script>
+      <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+      <!-- Chat Library -->
+      <script src="/controllers/ChatController.js"></script>
   </head>
   <body>
       <div id="wrapper">
@@ -43,7 +46,7 @@
                   <a class="navbar-brand" href="/">SB Admin v2.0</a>
               </div>
               <!-- /.navbar-header -->
-              <ul class="nav navbar-top-links navbar-right" ng-app="HomeModule" ng-controller="LogoutController">
+              <ul class="nav navbar-top-links navbar-right" >
                   <li class="dropdown">
                       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                           <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -83,7 +86,7 @@
                               <a href="/gantt"><i class="fa fa-table fa-fw"></i> Planning</a>
                           </li>
                           <li>
-                              <a href="/chat"><i class="fa fa-edit fa-fw"></i> ChatBox</a>
+                              <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Todo List</a>
                           </li>
                       </ul>
                   </div>
@@ -98,6 +101,105 @@
                   </div>
                   <!-- /.col-lg-12 -->
               </div>
+              <!-- /.row -->
+              <div class="row">
+                  <!-- /.col-lg-8 -->
+                  <div class="col-lg-12">
+                    <!-- /.panel -->
+                    <div class="chat-panel panel panel-default ng-scope" ng-app="ChatApp" ng-controller="Chatctrl">
+                        <div class="panel-heading">
+                            <i class="fa fa-comments fa-fw"></i> Chat
+                            <div class="btn-group pull-right">
+                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                     Color <i class="fa fa-chevron-down"></i>
+                                </button>
+                                <ul class="dropdown-menu slidedown">
+                                    <li>
+                                            <div class="coloricon" style="background-color :#FFDCDC;;" onclick='ChangeColorcode("#FFDCDC")'>Red</div>
+                                    </li>
+                                    <li>
+                                            <div class="coloricon" style="background-color : #DCDCFF;" onclick='ChangeColorcode("#DCDCFF")'>Blue</div>
+                                    </li>
+                                    <li>
+                                            <div class="coloricon" style="background-color : #C8FFC8;" onclick='ChangeColorcode("#C8FFC8")'>Green</div>
+                                    </li>
+                                    <li>
+                                            <div class="coloricon" style="background-color :  #B6AAAE;" onclick='ChangeColorcode("#B6AAAE")'>Purple</div>
+                                    </li>
+                                    <li>
+                                            <div class="coloricon" style="background-color : #FFF8B8;" onclick='ChangeColorcode("#FFF8B8")'>Yellow</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <ul class="chat" id="messages">
+
+                            </ul>
+
+                            <style type="text/css">
+                          .msg
+                          {
+                              padding : 5px;
+                               border : 1px #34495e solid;
+                               border-radius : 3px;
+                               background-color : #ecf0f1;
+                          }
+
+                          .colormessage
+                          {
+                              width : 50px;
+                              height : 50px;
+                              background-color : #ecf0f1;
+                              border-radius : 50%;
+                              text-align : center;
+                              vertical-align: middle;
+                              font-size : 2.5em;
+                          }
+
+                          .colorChoice
+                          {
+                             display: inline-block;
+                          }
+
+
+                          #buttonsubmit
+                          {
+                              background-color : #DCDCFF;
+                              color : black;
+                          }
+
+                          .coloricon
+                          {
+                              text-align : center ; padding : 5px; border : 1px #34495e solid;
+                               border-radius : 3px;
+                          }
+
+                          .dropdown-menu
+                          {
+                              padding : 5px;
+                          }
+                         </style>
+                        </div>
+                        <!-- /.panel-body -->
+                        <div class="panel-footer">
+                            <div class="input-group">
+                                <input id="Message" type="text" class="form-control input-sm" placeholder="Type your message here...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-warning btn-sm" id="buttonsubmit" ng-click="Send()">
+                                        Send
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- /.panel-footer -->
+                    </div>
+                    <!-- /.panel .chat-panel -->
+                  </div>
+                  <!-- /.col-lg-4 -->
+              </div>
+              <!-- /.row -->
           </div>
           <!-- /#page-wrapper -->
       </div>
@@ -114,5 +216,7 @@
       <script src="/public/javascripts/morris-data.js"></script>
       <!-- Custom Theme JavaScript -->
       <script src="/public/javascripts/sb-admin-2.js"></script>
+      <!-- Chat Library -->
+      <script src="/controllers/ChatController.js"></script>
   </body>
 </html>
