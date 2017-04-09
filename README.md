@@ -15,8 +15,10 @@ Check out the [live example](https://github.com/Waregalias/YnodeJS_Project)(comm
 2. Install the NodeJS dependencies: `npm install`.
 3. Install the Bower dependencies: `bower install`.
 4. Run the gulp build task: `gulp build`.
-5. Start server: `node server.js`
-6. Go to url page: [http://localhost:3000](http://localhost:3000).
+5. Start monghoDB : ./mongod
+6. Go to url page: http://[YOUR_URL]:[Port].
+--> Default Port is 3000
+--> C9Cloud users default port : 8080
 
 
 ### Development

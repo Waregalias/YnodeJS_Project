@@ -7,10 +7,10 @@ Install the NodeJS dependencies: npm install.
 Install the Bower dependencies: bower install.
 Run the gulp build task: gulp build.
 Start server: node server.js
-Go to url page: http://[YOUR_URL]:3000.
-
+Start monghoDB : ./mongod
+Go to url page: http://[YOUR_URL]:[Port].
+--> Default Port is 3000
 --> C9Cloud users default port : 8080
-
 
 Credits
 
