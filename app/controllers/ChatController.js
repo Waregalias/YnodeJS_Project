@@ -1,5 +1,5 @@
 /* jshint sub:true */
-var socketConnection = io.connect("http://localhost:3000/");
+var socketConnection = io.connect("https://tp-thomassifferlen-thomassif.c9users.io:8080/");
 var app = angular.module('ChatApp', ['ngCookies']);
 var colorcode = "#ecf0f1";
 

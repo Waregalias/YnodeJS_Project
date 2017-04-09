@@ -1,0 +1,41 @@
+    .msg
+  {
+      padding : 5px;
+       border : 1px #34495e solid;
+       border-radius : 3px;
+       background-color : #ecf0f1;
+  }
+
+  .colormessage
+  {
+      width : 50px;
+      height : 50px;
+      background-color : #ecf0f1;
+      border-radius : 50%;
+      text-align : center;
+      vertical-align: middle;
+      font-size : 2.5em;
+  }
+
+  .colorChoice
+  {
+     display: inline-block;
+  }
+
+
+  #buttonsubmit
+  {
+      background-color : #DCDCFF;
+      color : black;
+  }
+
+  .coloricon
+  {
+      text-align : center ; padding : 5px; border : 1px #34495e solid;
+       border-radius : 3px;
+  }
+
+  .dropdown-menu
+  {
+      padding : 5px;
+  }

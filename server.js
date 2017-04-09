@@ -28,10 +28,15 @@ var User          = require('./models/user');
 // chat include
 var Message       = require('./models/chat');
 var io            = require('socket.io')(http);
+
+
 // =======================
 // ===== Routes conf =====
 // =======================
-app.set('port', 3000 || process.env.PORT);
+
+let port = process.env.PORT || 3000;
+
+app.set('port', process.env.PORT);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/app/views');
 // app.use('/app', express.static(__dirname + '/app/'))
@@ -84,6 +89,4 @@ app.post('/signup', auth.signup);
 app.post('/logout', auth.logout);
 app.post("/gantt", gantt.save);
 
-http.listen(app.get('port'), function () {
-    console.log('Web Application | Server listening on port ' + app.get('port'));
-});
+http.listen(port, () => {console.log('\nPort:', port);});
