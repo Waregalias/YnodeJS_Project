@@ -9,6 +9,7 @@
 //    version: .alpha 0.1.0
 //*********************************************************//
 // app include
+
 var express       = require('express');
 var app           = express();
 var http          = require('http').Server(app);
@@ -60,8 +61,10 @@ app.use(cookieParser());
 app.use(morgan('dev'));
 
 //TODO
+
 app.use(bodyParser.json({type: 'application/vnd.api+json'})); // parse application/vnd.api+json as json
 app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-Method-Override header in the request
+require('./routes/routes_todo');
 //END
 
 io.on('connection', function (client) {
