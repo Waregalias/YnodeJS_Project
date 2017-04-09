@@ -54,6 +54,7 @@ app.get("/board", routes.board);
 app.get("/gantt", routes.gantt);
 app.post('/login', auth.login);
 app.post('/signup', auth.signup);
+app.post('/logout', auth.logout);
 app.post("/gantt", gantt.save);
 
 http.createServer(app).listen(app.get('port'), function () {

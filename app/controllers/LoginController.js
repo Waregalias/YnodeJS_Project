@@ -26,8 +26,8 @@ app.controller('LoginController', ['$scope', '$http', '$cookies', function($scop
           $scope.forgotClass = 'bg-danger';
           $scope.forgotmsg = response.data.message;
         } else {
-          $scope.token = response.data.token;
-          $cookies.put('token', $scope.token);
+          $cookies.put('user', response.data.username);
+          $cookies.put('token', response.data.token);
           location.reload();
         }
       });

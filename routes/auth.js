@@ -50,15 +50,18 @@ function login(req, res) {
       if (user.password != req.body.password) {
         return res.json({ success: false, message: 'Authentication failed. Wrong password.' });
       } else {
-        var token = jwt.sign(user, app.get('superSecret'), {
-          expiresIn: 1440
+        var token = jwt.sign(user, app.get('superSecret'), { expiresIn: 1440 });
+        User.update({'username': user.username}, {'token': token}, {upsert:true}, function(err, doc){
+            if (err) return res.send(500, { error: err });
         });
-        return res.json({
-          success: true,
-          message: 'Enjoy your token!',
-          token: token
-        });
+        return res.json({ success: true, message: 'Enjoy your token!', username: user.username, token: token });
       }
     }
   });
 } exports.login = login;
+
+function logout(req, res) {
+  User.findOneAndUpdate({'username': req.body.username}, {'token': ''}, {upsert:true}, function(err, doc){
+      if (err) return res.send(500, { error: err });
+  });
+} exports.logout = logout;
