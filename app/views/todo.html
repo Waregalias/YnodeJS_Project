@@ -1,0 +1,76 @@
+<!doctype html>
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="todoList">
+	<head>
+		<!-- META -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+	
+		<title>Node/Angular Todo App</title>
+	
+		<!-- SCROLLS -->
+		<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+		<link href="/public/stylesheets/styletodo.css" rel="stylesheet" type="text/css" />
+	
+		<!-- SPELLS -->
+		<script src="/vendor/angular/angular.js"></script>
+	
+		<script src="/public/javascripts/js_todo/controllers/main.js"></script> <!-- load up our controller -->
+		<script src="/public/javascripts/js_todo/services/todos.js"></script> <!-- load our todo service -->
+		<script src="/public/javascripts/js_todo/core.js"></script> <!-- load our main application -->
+	
+	</head>
+	
+	<!-- SET THE CONTROLLER -->
+	<body ng-controller="mainController">
+		<div class="container">
+		    <div class="todo-wrapper">
+		    	
+		    	<!-- HEADER AND TODO COUNT -->
+		    	<div class="jumbotron text-center">
+		      		<h2>You've got <span class="emphasis">{{ todos.length }}</span> things to do</h2>
+	      		</div>
+	      		
+	      		<div id="todo-list" class="row">
+	      			<div class="col-sm-8 col-sm-offset-2">
+	
+						<!-- LOOP OVER THE TODOS IN $scope.todos -->
+						<div class="checkbox" ng-repeat="todo in todos">
+							<ul>
+								<li>
+								    <div ng-click="deleteTodo(todo._id)">
+								    	<i class="fa fa-times fa-2x"></i>
+								    	<span>{{todo.text}}</span>
+							    	</div>
+								</li>
+							</ul>
+						</div>
+		
+						<p class="text-center" ng-show="loading">
+							<span class="fa fa-spinner fa-spin fa-3x"></span>
+						</p>
+		
+					</div>
+				</div>
+				
+				<!-- FORM TO CREATE TODOS -->
+				<div id="todo-form" class="row">
+					<div class="col-sm-8 col-sm-offset-2 text-center">
+						<form>
+							<div class="form-group">
+		
+								<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+								<input class="add-input" placeholder="I need to..." type="text" ng-model="formData.text" ng-model-instant />
+							</div>
+		
+							<!-- createToDo() WILL CREATE NEW TODOS -->
+							<button class="add-btn" ng-click="createTodo()"><h2>Add</h2></button>
+						</form>
+					
+					</div>
+				</div>
+		    </div>
+		</div>
+	</body>
+</html>

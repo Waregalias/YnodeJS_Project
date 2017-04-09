@@ -29,6 +29,10 @@ var User          = require('./models/user');
 var Message       = require('./models/chat');
 var io            = require('socket.io')(http);
 
+//TODILIST INTEGRATION
+var methodOverride = require('method-override');
+//END
+
 
 // =======================
 // ===== Routes conf =====
@@ -54,6 +58,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(morgan('dev'));
+
+//TODO
+app.use(bodyParser.json({type: 'application/vnd.api+json'})); // parse application/vnd.api+json as json
+app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-Method-Override header in the request
+//END
 
 io.on('connection', function (client) {
    console.log("user joined");
@@ -84,6 +93,7 @@ app.get('/signup', routes.signup);
 app.get("/board", routes.board);
 app.get("/gantt", routes.gantt);
 app.get("/chat", routes.chat);
+app.get("/todo", routes.todo);
 app.post('/login', auth.login);
 app.post('/signup', auth.signup);
 app.post('/logout', auth.logout);

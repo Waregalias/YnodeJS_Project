@@ -45,3 +45,8 @@ function gantt(req, res) {
 function chat(req, res) {
     res.sendFile(path.join(__dirname, '../app/views', 'chat.html'));
 } exports.chat = chat;
+
+function todo(req, res) {
+    res.sendFile(path.join(__dirname, '../app/views', 'todo.html'));
+} exports.todo = todo;
+
