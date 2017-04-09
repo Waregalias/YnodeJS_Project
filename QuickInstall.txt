@@ -1,0 +1,20 @@
+YnodeJS Application
+
+Installation
+
+Clone the repository: git clone https://github.com/Waregalias/YnodeJS_Project/
+Install the NodeJS dependencies: npm install.
+Install the Bower dependencies: bower install.
+Run the gulp build task: gulp build.
+Start server: node server.js
+Go to url page: http://[YOUR_URL]:3000.
+
+--> C9Cloud users default port : 8080
+
+
+Credits
+
+Saïd Mezhoud
+Thomas Sifferlen
+Thomas Brunsmann
+Somon Delaunay
